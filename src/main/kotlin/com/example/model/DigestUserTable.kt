@@ -15,7 +15,7 @@ var userTable: MutableMap<String, ByteArray> = mutableMapOf(
 )
 
 suspend fun uploadUser(): MutableMap<String, ByteArray> {
-    val userList = daoUsuario.allUsuarios()
+    val userList = daoUsuario.allUsuaris()
     if (userList.isEmpty()) {
         return mutableMapOf() // Devolver un mapa vacío si no hay usuarios
     }
