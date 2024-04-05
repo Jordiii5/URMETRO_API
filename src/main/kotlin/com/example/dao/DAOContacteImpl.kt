@@ -3,7 +3,6 @@ package com.example.dao
 import com.example.dao.DatabaseFactory.dbQuery
 import com.example.model.Contacte
 import com.example.model.Contactes
-import com.example.model.Usuari
 import com.example.model.Usuaris
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
@@ -12,7 +11,7 @@ import org.jetbrains.exposed.sql.selectAll
 
 class DAOContacteImpl : DAOContacte{
     private fun resultToRowContacte (row: ResultRow) = Contacte(
-        usuari_id = row[Usuaris.usuari_id],
+        usuari_id = row[Contactes.usuari_id],
         contacte_id = row[Contactes.contacte_id],
         contacte_nom = row[Contactes.contacte_nom],
         contacte_telefon = row[Contactes.contacte_telefon]
