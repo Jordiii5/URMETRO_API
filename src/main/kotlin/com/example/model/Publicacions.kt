@@ -11,7 +11,7 @@ class Publicacions (
     val publicacio_likes: Int,
     val usuari_id: Int
 )
-object Publicaciones : Table("publicaciones") {
+object Publicaciones : Table("publicacions") {
     val publicacio_id = integer("publicacio_id").autoIncrement()
     val publicacio_foto = varchar("publicacio_foto", 255)
     val publicacio_peu_foto = text("publicacio_peu_foto")
