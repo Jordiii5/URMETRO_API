@@ -19,7 +19,7 @@ fun Routing.loginRegisterRouting() {
                 return@post
             } else {
                 userTable[user.usuari_nom] = getMd5Digest("${user.usuari_nom}:$myRealm:${user.usuari_contra}")
-                daoUsuario.addNewUsuario(user.usuari_nom, user.usuari_contra)
+                daoUsuario.addNewUsuario(user.usuari_nom, user.usuari_dni,user.usuari_contra)
                 userTable.put(user.usuari_nom, getMd5Digest("${user.usuari_nom}:$myRealm:${user.usuari_contra}"))
                 call.respondText("Usuari registrat amb exit", status = HttpStatusCode.Created)
             }
