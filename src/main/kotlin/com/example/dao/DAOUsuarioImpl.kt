@@ -15,7 +15,7 @@ class DAOUsuarioImpl : DAOUsuario {
         usuari_telefon = row[Usuaris.usuari_telefon],
         usuari_contacte_emergencia = row[Usuaris.usuari_contacte_emergencia],
         usuari_imatge = row[Usuaris.usuari_imatge],
-        usuari_contra = row[Usuaris.usuari_contra],
+        usuari_contra = row[Usuaris.usuari_contra]
     )
 
     override suspend fun allUsuaris(): List<Usuari> = dbQuery {

@@ -2,7 +2,7 @@ POST http://localhost:8081/user/register
 Content-Type: application/json
 
 {
-    "usuari_id": 1,
+  "usuari_id": 1,
   "usuari_nom": "Josep",
   "usuari_dni": "Josep",
   "usuari_adreça": "Josep",
