@@ -1,13 +1,14 @@
-POST http://localhost:8081/user/register
+POST http://localhost:8080/user/register
 Content-Type: application/json
 
 {
-  "usuari_id": 1,
-  "usuari_nom": "Josep",
-  "usuari_dni": "Josep",
-  "usuari_adreça": "Josep",
-  "usuari_telefon": 987654321,
-  "usuari_contacte_emergencia": 123456789,
-  "usuari_imatge": "imatge.jpg",
+  "usuari_id": 0,
+  "usuari_nom": "Usuari prova",
+  "usuari_dni": "12345678Y",
+  "usuari_adreça": "",
+  "usuari_telefon": 0,
+  "usuari_contacte_emergencia": 0,
+  "usuari_imatge": "",
   "usuari_contra": "123456"
 }
+
