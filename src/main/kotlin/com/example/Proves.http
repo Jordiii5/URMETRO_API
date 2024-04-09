@@ -4,7 +4,7 @@ Content-Type: application/json
 {
   "usuari_id": 0,
   "usuari_nom": "Usuari prova",
-  "usuari_dni": "12345678Y",
+  "usuari_dni": "12345678J",
   "usuari_adreça": "",
   "usuari_telefon": 0,
   "usuari_contacte_emergencia": 0,
@@ -28,12 +28,18 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:8080/usuaris/23
+Content-Type: application/json
+
+
+###
 PUT http://localhost:8080/usuaris/23
 Content-Type: application/json
 
 {
-  "usuari_nom": "Josep",
-  "usuari_dni": "12345678Y",
+  "usuari_id": 23,
+  "usuari_nom": "Jordi",
+  "usuari_dni": "12345678C",
   "usuari_adreça": "",
   "usuari_telefon": 0,
   "usuari_contacte_emergencia": 0,
@@ -42,7 +48,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/usuaris/23
+DELETE http://localhost:8080/usuaris/34
 Content-Type: application/json
 
 
