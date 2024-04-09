@@ -67,7 +67,7 @@ fun Routing.usuariRouting() {
                     return@put
                 }
                 val updatedPost = daoUsuario.updateUsuario(
-                    usu_id = usuari.usuari_id,
+                    usu_id = id,
                     usu_nom = usuari.usuari_nom,
                     usu_dni = usuari.usuari_dni,
                     usu_adreça = usuari.usuari_adreça,

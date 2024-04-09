@@ -33,11 +33,10 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:8080/usuaris/23
+PUT http://localhost:8080/usuaris/35
 Content-Type: application/json
 
 {
-  "usuari_id": 23,
   "usuari_nom": "Jordi",
   "usuari_dni": "12345678C",
   "usuari_adreça": "",
@@ -48,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/usuaris/34
+DELETE http://localhost:8080/usuaris/23
 Content-Type: application/json
 
 

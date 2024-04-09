@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 
 @Serializable
 class Usuari (
-    val usuari_id: Int,
+    val usuari_id: Int = 0,
     val usuari_nom: String,
     val usuari_dni: String,
     val usuari_adreça: String,
