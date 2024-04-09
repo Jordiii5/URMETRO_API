@@ -19,7 +19,7 @@ fun Routing.loginRegisterRouting() {
                 return@post
             } else {
                 userTable[user.usuari_nom] = getMd5Digest("${user.usuari_nom}:$myRealm:${user.usuari_contra}")
-                daoUsuario.addNewUsuario(user.usuari_nom, user.usuari_dni,user.usuari_contra)
+                daoUsuario.addNewUsuario(user.usuari_nom, user.usuari_dni, user.usuari_adreça, user.usuari_telefon, user.usuari_contacte_emergencia, user.usuari_imatge, user.usuari_contra)
                 userTable.put(user.usuari_nom, getMd5Digest("${user.usuari_nom}:$myRealm:${user.usuari_contra}"))
                 call.respondText("Usuari registrat amb exit", status = HttpStatusCode.Created)
             }
@@ -27,8 +27,8 @@ fun Routing.loginRegisterRouting() {
         post("/login") {
             val user = call.receive<Usuari>()
             userTable = uploadUser()
-            val userHidden = getMd5Digest("${user.usuari_nom}:$myRealm:${user.usuari_contra}")
-            if (userTable.contains(user.usuari_nom) && userTable[user.usuari_nom]?.contentEquals(userHidden) == true) {
+            val userHidden = getMd5Digest("${user.usuari_dni}:$myRealm:${user.usuari_contra}")
+            if (userTable.contains(user.usuari_dni) && userTable[user.usuari_dni]?.contentEquals(userHidden) == true) {
                 call.respondText("Usuari autenticat", status = HttpStatusCode.OK)
                 return@post
             } else {

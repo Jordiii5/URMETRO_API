@@ -34,7 +34,7 @@ fun Routing.usuariRouting() {
             }
             post {
                 val usuari = call.receive<Usuari>()
-                val usuariCreat = daoUsuario.addNewUsuario(usuari.usuari_nom, usuari.usuari_dni,usuari.usuari_contra)
+                val usuariCreat = daoUsuario.addNewUsuario(usuari.usuari_nom, usuari.usuari_dni, usuari.usuari_adreça, usuari.usuari_telefon, usuari.usuari_contacte_emergencia, usuari.usuari_imatge, usuari.usuari_contra)
 
                 if (usuariCreat == null) {
                     call.respondText("No s'ha pogut crear l'usuari", status = HttpStatusCode.BadRequest)
@@ -56,16 +56,15 @@ fun Routing.usuariRouting() {
                 }
             }
 
-            /*
             put("/{id}") {
                 val id = call.parameters["id"]?.toIntOrNull()
                 if (id == null) {
-                    call.respond(HttpStatusCode.BadRequest, "Invalid postId")
+                    call.respond(HttpStatusCode.BadRequest, "Invalid Id")
                 } else {
                     val usuari = try {
                         call.receive<Usuari>()
                     } catch (e: SerializationException) {
-                        call.respond(HttpStatusCode.BadRequest, "Invalid post data")
+                        call.respond(HttpStatusCode.BadRequest, "Invalid data")
                         return@put
                     }
                     val updatedPost = daoUsuario.updateUsuario(
@@ -78,9 +77,9 @@ fun Routing.usuariRouting() {
                         usu_imatge = usuari.usuari_imatge
                     )
                     if (updatedPost) {
-                        call.respond(HttpStatusCode.OK, "User updated successfully")
+                        call.respond(HttpStatusCode.OK, "Usuari actualitzat correctament")
                     } else {
-                        call.respond(HttpStatusCode.InternalServerError, "Failed to update User")
+                        call.respond(HttpStatusCode.InternalServerError, "Problemes per actualitzar l'usuari")
                     }
                 }
             }
@@ -88,24 +87,22 @@ fun Routing.usuariRouting() {
             delete("/{id}") {
                 val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
                 daoUsuario.deleteUsuario(id.toInt())
-                call.respondText("User eliminado", status = HttpStatusCode.Accepted)
+                call.respondText("Usuari eliminat", status = HttpStatusCode.Accepted)
             }
 
             delete("/{id}") {
-                val postId = call.parameters["id"]?.toIntOrNull()
-                if (postId == null) {
+                val id = call.parameters["id"]?.toIntOrNull()
+                if (id == null) {
                     call.respond(HttpStatusCode.BadRequest, "Invalid Id")
                 } else {
-                    val deletedPost = daoUsuario.deleteUsuario(postId)
-                    if (deletedPost) {
-                        call.respond(HttpStatusCode.OK, "User deleted successfully")
+                    val deletedUser = daoUsuario.deleteUsuario(id)
+                    if (deletedUser) {
+                        call.respond(HttpStatusCode.OK, "Usuario eliminat correctament")
                     } else {
-                        call.respond(HttpStatusCode.InternalServerError, "Failed to delete user")
+                        call.respond(HttpStatusCode.InternalServerError, "Problemes al eliminar l'usuari")
                     }
                 }
             }
-
-             */
         }
     }
 }
