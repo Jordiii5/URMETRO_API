@@ -57,24 +57,38 @@ class DAOUsuarioImpl : DAOUsuario {
     }
 
     override suspend fun updateUsuario(
-        usu_id: Int,
-        usu_nom: String,
-        usu_dni: String,
-        usu_adreça: String,
-        usu_telefon: Int,
-        usu_contacte_emergencia: Int,
-        usu_imatge: String
-    ): Boolean = dbQuery {
-        Usuaris.update({Usuaris.usuari_id eq usu_id}) {
-            it[usuari_nom] = usu_nom
-            it[usuari_dni] = usu_dni
-            it[usuari_adreça] = usu_adreça
-            it[usuari_telefon] = usu_telefon
-            it[usuari_contacte_emergencia] = usu_contacte_emergencia
-            it[usuari_imatge] = usu_imatge
-        } > 0
-
+        usuari_id: Int,
+        usuari_nom: String,
+        usuari_dni: String,
+        usuari_adreça: String,
+        usuari_telefon: Int,
+        usuari_contacte_emergencia: Int,
+        usuari_imatge: String,
+        usuari_contra: String
+    ): Boolean {
+        TODO("Not yet implemented")
     }
+
+    //override suspend fun updateUsuario(
+    //    usuari_id: Int,
+    //    usuari_nom: String,
+    //    usuari_dni: String,
+    //    usuari_adreça: String,
+    //    usuari_telefon: Int,
+    //    usuari_contacte_emergencia: Int,
+    //    usuari_imatge: String,
+    //    usuari_contra: String
+    //): Boolean = dbQuery {
+    //    Usuaris.update({Usuaris.usuari_id eq usuari_id}) {
+    //        it[usuari_nom] = usuari_nom
+    //        it[usuari_dni] = usuari_dni
+    //        it[usuari_adreça] = usuari_adreça
+    //        it[usuari_telefon] = usuari_telefon
+    //        it[usuari_contacte_emergencia] = usuari_contacte_emergencia
+    //        it[usuari_imatge] = usuari_imatge
+    //        it[usuari_contra] = usuari_contra
+    //    } > 0
+    //}
 
     override suspend fun deleteUsuario(usuari_id: Int): Boolean = dbQuery{
         Usuaris.deleteWhere { Usuaris.usuari_id eq usuari_id } > 0

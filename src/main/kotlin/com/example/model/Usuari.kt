@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 
 @Serializable
 class Usuari (
-    val usuari_id: Int = 0,
+    val usuari_id: Int,
     val usuari_nom: String,
     val usuari_dni: String,
     val usuari_adreça: String,
@@ -23,6 +23,4 @@ object Usuaris: Table("usuari"){
     val usuari_contacte_emergencia = integer("usuari_contacte_emergencia")
     val usuari_imatge = varchar("usuari_imatge", 255)
     val usuari_contra = varchar("usuari_contra", 255)
-
-    override val primaryKey = PrimaryKey(usuari_id)
 }
