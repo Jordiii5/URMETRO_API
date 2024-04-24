@@ -42,14 +42,13 @@ fun Routing.usuariRouting() {
         //    }
         //  }
 
-        delete("/{id}") {
-            val usuari_id = call.parameters["usuari_id"]?: return@delete call.respond(HttpStatusCode.BadRequest)
-            val usuari = daoUsuario.usuario(usuari_id.toInt())?: return@delete call.respondText (
-                "No existeix cap usuari amb la id $usuari_id proporcionada",
-                status = HttpStatusCode.NotFound
-            )
-            if (daoUsuario.deleteUsuario(usuari_id.toInt())) {
+        //Ruta per eliminar un usuari amb el seu dni
+        delete("/{usuari_dni}") {
+            val usuari_dni = call.parameters["usuari_dni"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
+            if (daoUsuario.deleteUsuario(usuari_dni)) {
                 call.respondText("Usuari eliminat correctament", status = HttpStatusCode.Accepted)
+            } else {
+                call.respondText("No s'ha pogut eliminar l'usuari", status = HttpStatusCode.InternalServerError)
             }
         }
 

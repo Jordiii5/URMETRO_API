@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/usuaris/23
+DELETE http://172.23.6.130:8080/usuaris/46
 Content-Type: application/json
 
 

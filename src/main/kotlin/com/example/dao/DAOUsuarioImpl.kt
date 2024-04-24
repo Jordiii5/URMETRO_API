@@ -90,9 +90,10 @@ class DAOUsuarioImpl : DAOUsuario {
     //    } > 0
     //}
 
-    override suspend fun deleteUsuario(usuari_id: Int): Boolean = dbQuery{
-        Usuaris.deleteWhere { Usuaris.usuari_id eq usuari_id } > 0
+    override suspend fun deleteUsuario(usuari_dni: String): Boolean = dbQuery{
+        Usuaris.deleteWhere { Usuaris.usuari_dni eq usuari_dni } > 0
     }
+
 
 }
 
