@@ -31,16 +31,6 @@ fun Routing.usuariRouting() {
             )
             call.respond(usuari)
         }
-        //post {
-        //  val usuari = call.receive<Usuari>()
-        //  val usuariCreat = daoUsuario.addNewUsuario(usuari.usuari_nom, usuari.usuari_dni, usuari.usuari_adreça, usuari.usuari_telefon, usuari.usuari_contacte_emergencia, usuari.usuari_imatge, usuari.usuari_contra)
-        //
-        //  if (usuariCreat == null) {
-        //  call.respondText("No s'ha pogut crear l'usuari", status = HttpStatusCode.BadRequest)
-        //  } else {
-        //     call.respond(usuariCreat)
-        //    }
-        //  }
 
         //Ruta per eliminar un usuari amb el seu dni
         delete("/{usuari_dni}") {
@@ -52,32 +42,27 @@ fun Routing.usuariRouting() {
             }
         }
 
-        //put("/{id}") {
-        //    val id = call.parameters["id"]?.toIntOrNull()
-        //    if (id == null) {
-        //        call.respond(HttpStatusCode.BadRequest, "Invalid Id")
-        //    } else {
-        //        val usuari = try {
-        //            call.receive<Usuari>()
-        //        } catch (e: SerializationException) {
-        //            call.respond(HttpStatusCode.BadRequest, "Invalid data")
-        //            return@put
-        //        }
-                //val updatedPost = daoUsuario.updateUsuario(
-                //    usu_id = id,
-                //    usu_nom = usuari.usuari_nom,
-                //    usu_dni = usuari.usuari_dni,
-                //    usu_adreça = usuari.usuari_adreça,
-                //    usu_telefon = usuari.usuari_telefon,
-                //    usu_contacte_emergencia = usuari.usuari_contacte_emergencia,
-                //    usu_imatge = usuari.usuari_imatge
-                //)
-                //if (updatedPost) {
-                //    call.respond(HttpStatusCode.OK, "Usuari actualitzat correctament")
-                //} else {
-                //    call.respond(HttpStatusCode.InternalServerError, "Problemes per actualitzar l'usuari")
-                //}
-        //    }
-        //}
+        put("/update/dades/{usuari_dni}/{usuari_nom}/{usuari_adreça}/{usuari_telefon}/{usuari_contacte_emergencia}") {
+            val usuari_dni: String
+            val usuari_nom: String
+            val usuari_adreça: String
+            val usuari_telefon: Int
+            val usuari_contacte_emergencia: Int
+            try {
+                usuari_dni = call.parameters["usuari_dni"].toString()
+                usuari_nom = call.parameters["usuari_nom"].toString()
+                usuari_adreça = call.parameters["usuari_adreça"].toString()
+                usuari_telefon = call.parameters["usuari_telefon"]!!.toInt()
+                usuari_contacte_emergencia = call.parameters["usuari_contacte_emergencia"]!!.toInt()
+
+                if (daoUsuario.updateUsuario(usuari_dni, usuari_nom, usuari_adreça, usuari_telefon, usuari_contacte_emergencia)) {
+                    call.respondText("S'ha actualiztat correctmaent", status = HttpStatusCode.OK)
+                } else {
+                    call.respondText("No s'ha pogut fer l'update", status = HttpStatusCode.InternalServerError)
+                }
+            } catch (e: NumberFormatException) {
+                call.respondText("[ERROR] en el parametre.", status = HttpStatusCode.BadRequest)
+            }
+        }
     }
 }
