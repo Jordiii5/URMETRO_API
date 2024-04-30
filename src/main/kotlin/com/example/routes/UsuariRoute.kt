@@ -42,20 +42,18 @@ fun Routing.usuariRouting() {
             }
         }
 
-        put("/update/dades/{usuari_dni}/{usuari_nom}/{usuari_adreça}/{usuari_telefon}/{usuari_contacte_emergencia}") {
+        put("/update/dades/{usuari_dni}/{usuari_nom}/{usuari_telefon}/{usuari_contacte_emergencia}") {
             val usuari_dni: String
             val usuari_nom: String
-            val usuari_adreça: String
             val usuari_telefon: Int
             val usuari_contacte_emergencia: Int
             try {
                 usuari_dni = call.parameters["usuari_dni"].toString()
                 usuari_nom = call.parameters["usuari_nom"].toString()
-                usuari_adreça = call.parameters["usuari_adreça"].toString()
                 usuari_telefon = call.parameters["usuari_telefon"]!!.toInt()
                 usuari_contacte_emergencia = call.parameters["usuari_contacte_emergencia"]!!.toInt()
 
-                if (daoUsuario.updateUsuario(usuari_dni, usuari_nom, usuari_adreça, usuari_telefon, usuari_contacte_emergencia)) {
+                if (daoUsuario.updateUsuario(usuari_dni, usuari_nom, usuari_telefon, usuari_contacte_emergencia)) {
                     call.respondText("S'ha actualiztat correctmaent", status = HttpStatusCode.OK)
                 } else {
                     call.respondText("No s'ha pogut fer l'update", status = HttpStatusCode.InternalServerError)

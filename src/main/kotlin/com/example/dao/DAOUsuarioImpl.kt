@@ -12,10 +12,8 @@ class DAOUsuarioImpl : DAOUsuario {
         usuari_id = row[Usuaris.usuari_id],
         usuari_nom = row[Usuaris.usuari_nom],
         usuari_dni = row[Usuaris.usuari_dni],
-        usuari_adreça = row[Usuaris.usuari_adreça],
         usuari_telefon = row[Usuaris.usuari_telefon],
         usuari_contacte_emergencia = row[Usuaris.usuari_contacte_emergencia],
-        usuari_imatge = row[Usuaris.usuari_imatge],
         usuari_contra = row[Usuaris.usuari_contra]
     )
 
@@ -37,14 +35,18 @@ class DAOUsuarioImpl : DAOUsuario {
             .singleOrNull()
     }
 
-    override suspend fun addNewUsuario(usuari_nom: String, usuari_dni: String, usuari_adreça: String, usuari_telefon:Int, usuari_contacte_emergencia: Int, usuari_imatge: String, usuari_contra: String): Usuari? = dbQuery {
+    override suspend fun addNewUsuario(
+        usuari_nom: String,
+        usuari_dni: String,
+        usuari_telefon: Int,
+        usuari_contacte_emergencia: Int,
+        usuari_contra: String
+    ): Usuari? = dbQuery {
         val insertStatement = Usuaris.insert {
             it[Usuaris.usuari_nom] = usuari_nom
             it[Usuaris.usuari_dni] = usuari_dni
-            it[Usuaris.usuari_adreça] = usuari_adreça
             it[Usuaris.usuari_telefon] = usuari_telefon
             it[Usuaris.usuari_contacte_emergencia] = usuari_contacte_emergencia
-            it[Usuaris.usuari_imatge] = usuari_imatge
             it[Usuaris.usuari_contra] = usuari_contra
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultToRowUsuario)
@@ -59,13 +61,11 @@ class DAOUsuarioImpl : DAOUsuario {
     override suspend fun updateUsuario(
         usuari_dni: String,
         usuari_nom: String,
-        usuari_adreça: String,
         usuari_telefon: Int,
         usuari_contacte_emergencia: Int,
     ): Boolean = dbQuery{
         Usuaris.update({Usuaris.usuari_dni eq usuari_dni}){
             it[Usuaris.usuari_nom] = usuari_nom
-            it[Usuaris.usuari_adreça] = usuari_adreça
             it[Usuaris.usuari_telefon] = usuari_telefon
             it[Usuaris.usuari_contacte_emergencia] = usuari_contacte_emergencia
         } < 0

@@ -79,10 +79,8 @@ suspend fun registrarUsuari(user: Usuari): Boolean {
     daoUsuario.addNewUsuario(
         user.usuari_nom,
         user.usuari_dni,
-        user.usuari_adreça,
         user.usuari_telefon,
         user.usuari_contacte_emergencia,
-        user.usuari_imatge,
         user.usuari_contra
     )
 
