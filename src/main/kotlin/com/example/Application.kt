@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.dao.DAOPublicacionsImpl
 import com.example.dao.DatabaseFactory
 import com.example.plugins.*
 import io.ktor.http.*
@@ -19,7 +20,8 @@ fun Application.module() {
     DatabaseFactory.init()
     configureSecurity()
     configureSerialization()
-    configureRouting()
+    val daoPublicacions = DAOPublicacionsImpl()
+    configureRouting(daoPublicacions)
     install(CORS) {
         allowMethod(HttpMethod.Options)
         allowMethod(HttpMethod.Put)
