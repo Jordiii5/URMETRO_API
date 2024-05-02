@@ -1,5 +1,7 @@
 package com.example.plugins
 
+import com.example.dao.DAOPublicacions
+import com.example.routes.publicacioRouting
 import com.example.routes.sdsd.loginRegisterRouting
 import com.example.routes.usuariRouting
 import io.ktor.server.application.*
@@ -10,5 +12,6 @@ fun Application.configureRouting() {
     routing {
         loginRegisterRouting()
         usuariRouting()
+        publicacioRouting()
     }
 }

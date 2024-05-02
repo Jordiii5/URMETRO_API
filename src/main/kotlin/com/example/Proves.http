@@ -28,12 +28,12 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/usuaris/23
+GET http://localhost:8080/usuaris
 Content-Type: application/json
 
 
 ###
-PUT http://localhost:8080/usuaris/35
+PUT http://localhost:8080/usuaris/36
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://172.23.6.130:8080/usuaris/46
+DELETE http://localhost:8080/usuaris/41
 Content-Type: application/json
 
 
