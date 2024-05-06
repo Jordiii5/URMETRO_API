@@ -55,12 +55,10 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
             }
         }
 
-
         post {
             val data = call.receiveMultipart()
             var publiccions: Publicacions? = null
             val gson = Gson()
-
 
             var fileName = ""
             var peuDeFoto = ""
@@ -79,8 +77,6 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                             }
                         }
                     }
-
-
                     is PartData.FileItem -> {
                         fileName = part.originalFileName as String
                         var fileBytes = part.streamProvider().readBytes()
@@ -116,7 +112,7 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
             call.respondText("Publicació de foto eliminada", status = HttpStatusCode.Accepted)
         }
 
-
+/*
         delete("/{postId}") {
             val postId = call.parameters["postId"]?.toIntOrNull()
             if (postId == null) {
@@ -130,9 +126,33 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                 }
             }
         }
+
+ */
+
+        get("/imagenes/{imageName}") {
+            val imageName = call.parameters["imageName"]
+            println(imageName)
+            val file = File("./images/$imageName")
+            println(file)
+            if (file.exists()) {
+                call.respondFile(File("./images/$imageName"))
+            } else {
+                call.respondText("Image not found", status = HttpStatusCode.NotFound)
+            }
+        }
+
+        get("/imagenespost/{imageName}") {
+            val imageName = call.parameters["imageName"]
+            var file = File("./src/main/resources/imagenes/$imageName")
+            if (file.exists()) {
+                call.respondFile(File("./src/main/resources/imagenes/$imageName"))
+            } else {
+                call.respondText("Image not found", status = HttpStatusCode.NotFound)
+            }
+        }
     }
 
-
+/*
     route("/posts") {
 
         get("/imagenes/{imageName}") {
@@ -157,6 +177,8 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
             }
         }
     }
+
+ */
 
 
 }

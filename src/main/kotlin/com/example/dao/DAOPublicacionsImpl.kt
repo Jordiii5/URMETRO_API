@@ -26,7 +26,11 @@ class DAOPublicacionsImpl: DAOPublicacions {
             .singleOrNull()
     }
 
-    override suspend fun addNewPublicacio(publicacio_foto: String, publicacio_peu_foto: String, usuari_id: Int): Publicacions? = dbQuery {
+    override suspend fun addNewPublicacio(
+        publicacio_foto: String,
+        publicacio_peu_foto: String,
+        usuari_id: Int
+    ): Publicacions? = dbQuery {
         val insertStatement = Publicaciones.insert {
             it[Publicaciones.publicacio_foto] = publicacio_foto
             it[Publicaciones.publicacio_peu_foto] = publicacio_peu_foto
@@ -47,3 +51,5 @@ class DAOPublicacionsImpl: DAOPublicacions {
             .singleOrNull()
     }
 }
+
+
