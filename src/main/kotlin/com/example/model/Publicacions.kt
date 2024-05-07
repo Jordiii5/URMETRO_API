@@ -4,12 +4,12 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
 
 @Serializable
-class Publicacions (
-    val publicacio_id: Int,
-    val publicacio_foto: String,
-    val publicacio_peu_foto: String,
-    val publicacio_likes: Int,
-    val usuari_id: Int
+data class Publicacions (
+    val publicacio_id: Int = 0,
+    val publicacio_foto: String = "",
+    val publicacio_peu_foto: String = "",
+    val publicacio_likes: Int = 0,
+    val usuari_id: Int = 0
 )
 object Publicaciones : Table("publicacions") {
     val publicacio_id = integer("publicacio_id").autoIncrement()

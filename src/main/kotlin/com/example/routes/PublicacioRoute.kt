@@ -88,7 +88,7 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                 }
             }
             publiccions = gson.fromJson(
-                """{publicacio_peu_foto":${peuDeFoto}, "usuari_id":${usuariId}"}""",
+                """{publicacio_peu_foto":${peuDeFoto}, "usuari_id":${usuariId}}""",
                 Publicacions::class.java
             )
 
