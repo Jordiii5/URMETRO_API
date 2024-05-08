@@ -5,11 +5,11 @@ import org.jetbrains.exposed.sql.Table
 
 @Serializable
 data class Publicacions (
-    val publicacio_id: Int = 0,
-    val publicacio_foto: String = "",
-    val publicacio_peu_foto: String = "",
-    val publicacio_likes: Int = 0,
-    val usuari_id: Int = 0
+    val publicacio_id: Int,
+    val publicacio_foto: String,
+    val publicacio_peu_foto: String,
+    val publicacio_likes: Int,
+    val usuari_id: Int
 )
 object Publicaciones : Table("publicacions") {
     val publicacio_id = integer("publicacio_id").autoIncrement()

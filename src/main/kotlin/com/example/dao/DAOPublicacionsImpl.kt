@@ -29,19 +29,15 @@ class DAOPublicacionsImpl: DAOPublicacions {
     override suspend fun addNewPublicacio(
         publicacio_foto: String,
         publicacio_peu_foto: String,
+        publicacio_likes: Int,
         usuari_id: Int
     ): Publicacions? = dbQuery {
-        // Verifica si publicacio_peu_foto es nulo, en cuyo caso establece un valor predeterminado
-        val peuFoto = publicacio_peu_foto ?: "Sin descripción"
-
-        // Inserta una nueva fila en la tabla Publicaciones
         val insertStatement = Publicaciones.insert {
             it[Publicaciones.publicacio_foto] = publicacio_foto
-            it[Publicaciones.publicacio_peu_foto] = peuFoto
+            it[Publicaciones.publicacio_peu_foto] = publicacio_peu_foto
+            it[Publicaciones.publicacio_likes] = publicacio_likes
             it[Publicaciones.usuari_id] = usuari_id
         }
-
-        // Recupera y devuelve el resultado de la inserción
         insertStatement.resultedValues?.singleOrNull()?.let(::resultToRowPublicacions)
     }
 

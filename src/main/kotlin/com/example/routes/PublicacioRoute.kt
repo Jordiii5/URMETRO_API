@@ -62,6 +62,7 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
 
             var fileName = ""
             var peuDeFoto = ""
+            var likes = 0
             var usuariId = 0
 
 
@@ -73,6 +74,7 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                         } else {
                             when (part.name) {
                                 "publicacio_peu_foto" -> peuDeFoto = part.value
+                                "publicacio_likes" -> likes = part.value.toInt()
                                 "usuari_id" -> usuariId = part.value.toInt()
                             }
                         }
@@ -88,7 +90,7 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                 }
             }
             publiccions = gson.fromJson(
-                """{publicacio_peu_foto":${peuDeFoto}, "usuari_id":${usuariId}}""",
+                """{"publicacio_peu_foto":${peuDeFoto},"publicacio_likes":${likes}, "usuari_id":${usuariId}}""",
                 Publicacions::class.java
             )
 
@@ -97,6 +99,7 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                 daoPublicacions.addNewPublicacio(
                     fileName,
                     publiccions!!.publicacio_peu_foto,
+                    publiccions!!.publicacio_likes,
                     publiccions!!.usuari_id
                 )
             }
