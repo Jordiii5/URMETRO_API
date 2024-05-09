@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.dao.DAOContacteImpl
 import com.example.dao.DAOPublicacionsImpl
 import com.example.dao.DatabaseFactory
 import com.example.plugins.*
@@ -10,7 +11,7 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.cors.routing.*
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "192.168.1.68", module = Application::module)
+    embeddedServer(Netty, port = 8080, host = "172.23.6.130", module = Application::module)
         .start(wait = true)
 }
 //
@@ -21,7 +22,8 @@ fun Application.module() {
     configureSecurity()
     configureSerialization()
     val daoPublicacions = DAOPublicacionsImpl()
-    configureRouting(daoPublicacions)
+    val daoContacte = DAOContacteImpl()
+    configureRouting(daoPublicacions, daoContacte)
     install(CORS) {
         allowMethod(HttpMethod.Options)
         allowMethod(HttpMethod.Put)
