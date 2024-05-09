@@ -32,6 +32,18 @@ fun Routing.usuariRouting() {
             call.respond(usuari)
         }
 
+        get("/{usuari_id}") {
+            val username = call.parameters["usuari_id"]?: return@get call.respondText(
+                "Id del usuari incorrecte",
+                status = HttpStatusCode.BadRequest
+            )
+            val usuari = daoUsuario.usuario(username.toInt())?: return@get call.respondText(
+                "No existeix cap usuari amb aquesta id",
+                status = HttpStatusCode.NotFound
+            )
+            call.respond(usuari)
+        }
+
         //Ruta per eliminar un usuari amb el seu dni
         delete("/{usuari_dni}") {
             val usuari_dni = call.parameters["usuari_dni"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
