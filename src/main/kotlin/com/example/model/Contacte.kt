@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table
 
 @Serializable
-class Contacte (
+data class Contacte (
     val contacte_id: Int,
     val contacte_nom: String,
     val contacte_telefon: Int,

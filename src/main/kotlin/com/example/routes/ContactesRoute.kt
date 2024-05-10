@@ -57,7 +57,6 @@ fun Routing.contacteRouting(daoContacte: DAOContacte) {
                 Contacte::class.java
             )
 
-
             val contacteToPost = contactes?.let { _ ->
                 daoContacte.addNewContacte(
                     contactes!!.contacte_nom,
@@ -65,8 +64,7 @@ fun Routing.contacteRouting(daoContacte: DAOContacte) {
                     contactes!!.usuari_id
                 )
             }
-            call.respondRedirect("/posts/${contacteToPost?.contacte_id}")
-
+            call.respondRedirect("/contactes/${contacteToPost?.contacte_id}")
 
         }
 

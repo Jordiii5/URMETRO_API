@@ -35,10 +35,11 @@ class DAOContacteImpl : DAOContacte{
             .singleOrNull()
     }
 
-    override suspend fun addNewContacte(contacte_nom: String, contacte_telefon: Int): Contacte? = dbQuery{
+    override suspend fun addNewContacte(contacte_nom: String, contacte_telefon: Int, usuari_id: Int): Contacte? = dbQuery{
         val insertStatement = Contactes.insert {
             it[Contactes.contacte_nom] = contacte_nom
             it[Contactes.contacte_telefon] = contacte_telefon
+            it[Contactes.usuari_id] = usuari_id
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultToRowContacte)
     }
