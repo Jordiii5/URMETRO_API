@@ -11,12 +11,10 @@ import io.ktor.server.netty.*
 import io.ktor.server.plugins.cors.routing.*
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "192.168.1.68", module = Application::module)
+    embeddedServer(Netty, port = 8080, host = "172.23.6.130", module = Application::module)
         .start(wait = true)
 }
-//
 //172.23.6.130
-//192.168.56.1
 fun Application.module() {
     DatabaseFactory.init()
     configureSecurity()
