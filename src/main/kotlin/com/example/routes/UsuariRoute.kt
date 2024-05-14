@@ -1,17 +1,20 @@
 package com.example.routes
 
 import com.example.dao.daoUsuario
-import com.example.model.Usuari
 import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.serialization.SerializationException
-//
+
+/**
+ * Defineix les rutes per a les operacions CRUD dels usuaris.
+ */
 fun Routing.usuariRouting() {
     route("/usuaris") {
+
+        /**
+         * Ruta per obtenir la llista de tots els usuaris.
+         */
         get {
             val llistaUsuari = daoUsuario.allUsuaris()
             if (llistaUsuari.isNotEmpty()) {
@@ -20,6 +23,10 @@ fun Routing.usuariRouting() {
                 call.respondText("No s'han trobat usuaris")
             }
         }
+
+        /**
+         * Ruta per obtenir un usuari per DNI.
+         */
         get("/{usuari_dni}") {
             val username = call.parameters["usuari_dni"]?: return@get call.respondText(
                 "Dni del usuari incorrecte",
@@ -32,6 +39,9 @@ fun Routing.usuariRouting() {
             call.respond(usuari)
         }
 
+        /**
+         * Ruta per obtenir un usuari per ID.
+         */
         get("/{usuari_id}") {
             val username = call.parameters["usuari_id"]?: return@get call.respondText(
                 "Id del usuari incorrecte",
@@ -44,7 +54,9 @@ fun Routing.usuariRouting() {
             call.respond(usuari)
         }
 
-        //Ruta per eliminar un usuari amb el seu dni
+        /**
+         * Ruta per eliminar un usuari amb el seu DNI.
+         */
         delete("/{usuari_dni}") {
             val usuari_dni = call.parameters["usuari_dni"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
             if (daoUsuario.deleteUsuario(usuari_dni)) {
@@ -54,6 +66,9 @@ fun Routing.usuariRouting() {
             }
         }
 
+        /**
+         * Ruta per actualitzar les dades d'un usuari.
+         */
         put("/update/dades/{usuari_dni}/{usuari_nom}/{usuari_telefon}/{usuari_contacte_emergencia}") {
             val usuari_dni: String
             val usuari_nom: String

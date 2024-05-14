@@ -14,7 +14,6 @@ fun main() {
     embeddedServer(Netty, port = 8080, host = "172.23.6.130", module = Application::module)
         .start(wait = true)
 }
-//172.23.6.130
 fun Application.module() {
     DatabaseFactory.init()
     configureSecurity()

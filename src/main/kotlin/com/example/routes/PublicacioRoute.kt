@@ -28,10 +28,8 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
                 "Missing title",
                 status = HttpStatusCode.BadRequest
             )
-            val publicacions = daoPublicacions.allPublicacions() ?: return@get call.respondText(
-                "No hi ha publicacions amb el nom $name",
-                status = HttpStatusCode.NotFound
-            )
+            val publicacions = daoPublicacions.allPublicacions()
+
             val publicacionsRespond = mutableListOf<Publicacions>()
             for (i in publicacions) {
                 if (name in i.publicacio_peu_foto) {
@@ -115,23 +113,6 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
             call.respondText("Publicació de foto eliminada", status = HttpStatusCode.Accepted)
         }
 
-/*
-        delete("/{postId}") {
-            val postId = call.parameters["postId"]?.toIntOrNull()
-            if (postId == null) {
-                call.respond(HttpStatusCode.BadRequest, "Invalid postId")
-            } else {
-                val deletedPost = daoPublicacions.deletePublicacio(postId)
-                if (deletedPost) {
-                    call.respond(HttpStatusCode.OK, "Post deleted successfully")
-                } else {
-                    call.respond(HttpStatusCode.InternalServerError, "Failed to delete post")
-                }
-            }
-        }
-
- */
-
         get("/imagenes/{imageName}") {
             val imageName = call.parameters["imageName"]
             println(imageName)
@@ -154,34 +135,4 @@ fun Routing.publicacioRouting(daoPublicacions: DAOPublicacions) {
             }
         }
     }
-
-/*
-    route("/posts") {
-
-        get("/imagenes/{imageName}") {
-            val imageName = call.parameters["imageName"]
-            println(imageName)
-            val file = File("./images/$imageName")
-            println(file)
-            if (file.exists()) {
-                call.respondFile(File("./images/$imageName"))
-            } else {
-                call.respondText("Image not found", status = HttpStatusCode.NotFound)
-            }
-        }
-
-        get("/imagenespost/{imageName}") {
-            val imageName = call.parameters["imageName"]
-            var file = File("./src/main/resources/imagenes/$imageName")
-            if (file.exists()) {
-                call.respondFile(File("./src/main/resources/imagenes/$imageName"))
-            } else {
-                call.respondText("Image not found", status = HttpStatusCode.NotFound)
-            }
-        }
-    }
-
- */
-
-
 }
