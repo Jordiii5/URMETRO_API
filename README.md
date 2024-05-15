@@ -15,7 +15,7 @@
 ##  Descripció del projecte 
 
     L'API de URMETRO conté les dades i les imatges que permet a la nostra aplicació 
-    mòbil obtenir les dades necessàries per garantir a lusuari una interfície correcta.
+    mòbil obtenir les dades necessàries per garantir al usuari una interfície correcta.
 
     És una API creada des de zero la qual es comunica amb una base de dades al núvol 
     per rebre les dades i traslladar-les al client. Conté imatges que després carrega
